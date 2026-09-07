@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admissions at Junaid Bhaimia University — Learn about eligibility, application process, scholarships, fees, and frequently asked questions.">
+    <title>Admissions — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Process Steps --- */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin: var(--space-xl) 0;
+        }
+        @media (min-width: 768px) {
+            .process-steps { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+        }
+        .process-step {
+            text-align: center;
+            padding: var(--space-lg);
+            flex: 1;
+            position: relative;
+        }
+        .process-step__number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: var(--font-heading);
+            line-height: 1;
+            margin-bottom: var(--space-sm);
+        }
+        .process-step__arrow {
+            display: none;
+            position: absolute;
+            right: -20px;
+            top: 30%;
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+        @media (min-width: 768px) {
+            .process-step:not(:last-child) .process-step__arrow { display: block; }
+        }
+        .process-step h3 { font-size: 1.1rem; margin-bottom: var(--space-xs); }
+        .process-step p { font-size: 0.9rem; color: var(--gray); }
+
+        /* --- Scholarship Cards --- */
+        .scholarships-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .scholarships-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .scholarship-card {
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--gold);
+            transition: all var(--transition-base);
+        }
+        .scholarship-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .scholarship-card__name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .scholarship-card__detail {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        .scholarship-card__desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* --- Fees Table --- */
+        .fees-table-wrapper {
+            overflow-x: auto;
+            margin: var(--space-lg) 0;
+        }
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .fees-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: var(--space-md);
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .fees-table td {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--dark);
+        }
+        .fees-table tr:nth-child(even) td { background-color: var(--cream); }
+        .fees-table tr:hover td { background-color: rgba(155, 28, 49, 0.05); }
+
+        /* --- Accordion (FAQ) --- */
+        .accordion { margin: var(--space-xl) 0; }
+        .accordion-item {
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--space-sm);
+            overflow: hidden;
+        }
+        .accordion-question {
+            width: 100%;
+            padding: var(--space-md);
+            background-color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: left;
+            transition: background-color var(--transition-fast);
+        }
+        .accordion-question:hover { background-color: var(--cream); }
+        .accordion-question::after {
+            content: '+';
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            transition: transform var(--transition-fast);
+        }
+        .accordion-item.is-open .accordion-question::after {
+            content: '\2212';
+        }
+        .accordion-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-base);
+        }
+        .accordion-answer__inner {
+            padding: 0 var(--space-md) var(--space-md);
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* --- Important Dates --- */
+        .important-dates {
+            display: grid;
+            gap: var(--space-sm);
+        }
+        .date-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        .date-item__event { font-weight: 600; color: var(--primary); }
+        .date-item__date {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            background-color: rgba(155, 28, 49, 0.05);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2px;
+        }
+
+        /* --- Documents Checklist --- */
+        .documents-list {
+            list-style: none;
+            display: grid;
+            gap: var(--space-sm);
+        }
+        .documents-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        .check-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link nav-link--active">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="admissions-title">
+        <div class="container">
+            <span class="section-label text-white">Start Your Journey</span>
+            <h1 id="admissions-title" class="animate-on-scroll">ADMISSIONS</h1>
+            <p class="animate-on-scroll delay-1">Everything you need to know about applying to Junaid Bhaimia University for the 2026 academic year.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         APPLICATION PROCESS (5 STEPS)
+         ============================================= -->
+    <section class="section" aria-labelledby="process-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">How to Apply</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="process-heading" class="section-title">YOUR APPLICATION JOURNEY</h2>
+                <p class="section-description" style="margin-left:auto;margin-right:auto;">Follow these five simple steps to begin your journey at JBU.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="process-step__number">01</div>
+                    <h3>Explore Programs</h3>
+                    <p>Browse our 120+ programs across six faculties to find the perfect fit for your goals.</p>
+                    <span class="process-step__arrow" aria-hidden="true">&#8594;</span>
+                </div>
+                <div class="process-step animate-on-scroll delay-1">
+                    <div class="process-step__number">02</div>
+                    <h3>Submit Application</h3>
+                    <p>Complete the online application form and upload required documents.</p>
+                    <span class="process-step__arrow" aria-hidden="true">&#8594;</span>
+                </div>
+                <div class="process-step animate-on-scroll delay-2">
+                    <div class="process-step__number">03</div>
+                    <h3>Document Verification</h3>
+                    <p>Our admissions team reviews and verifies your submitted documents.</p>
+                    <span class="process-step__arrow" aria-hidden="true">&#8594;</span>
+                </div>
+                <div class="process-step animate-on-scroll delay-3">
+                    <div class="process-step__number">04</div>
+                    <h3>Selection</h3>
+                    <p>Selected candidates are notified based on merit and available seats.</p>
+                    <span class="process-step__arrow" aria-hidden="true">&#8594;</span>
+                </div>
+                <div class="process-step animate-on-scroll delay-4">
+                    <div class="process-step__number">05</div>
+                    <h3>Admission Confirmed</h3>
+                    <p>Accept your offer, pay fees, and join the JBU community!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         IMPORTANT DATES
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="dates-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Mark Your Calendar</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="dates-heading" class="section-title">IMPORTANT DATES — 2026 INTAKE</h2>
+            </div>
+
+            <div class="important-dates animate-on-scroll delay-1">
+                <div class="date-item">
+                    <span class="date-item__event">Application Portal Opens</span>
+                    <span class="date-item__date">Jan 15, 2026</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-item__event">Early Bird Deadline (Scholarship Priority)</span>
+                    <span class="date-item__date">Mar 31, 2026</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-item__event">Regular Application Deadline</span>
+                    <span class="date-item__date">May 31, 2026</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-item__event">Entrance Test / Interview Schedule</span>
+                    <span class="date-item__date">Jun 1–15, 2026</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-item__event">Result Declaration &amp; Offer Letters</span>
+                    <span class="date-item__date">Jul 10, 2026</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-item__event">Registration &amp; Fee Payment Deadline</span>
+                    <span class="date-item__date">Aug 15, 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SCHOLARSHIPS
+         ============================================= -->
+    <section class="section" aria-labelledby="scholarships-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Financial Aid</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="scholarships-heading" class="section-title">SCHOLARSHIPS &amp; FINANCIAL AID</h2>
+                <p class="section-description" style="margin-left:auto;margin-right:auto;">We believe financial constraints should never stand in the way of quality education. Explore our scholarship options.</p>
+            </div>
+
+            <div class="scholarships-grid">
+                <div class="scholarship-card animate-on-scroll">
+                    <h3 class="scholarship-card__name">Merit Scholarship</h3>
+                    <div class="scholarship-card__detail">Up to 100% Tuition Waiver</div>
+                    <p class="scholarship-card__desc">Awarded to students who score in the top 1% of their qualifying examinations or achieve exceptional scores on the JBU Entrance Test.</p>
+                </div>
+                <div class="scholarship-card animate-on-scroll delay-1">
+                    <h3 class="scholarship-card__name">Sports Excellence Award</h3>
+                    <div class="scholarship-card__detail">50%–75% Tuition Waiver</div>
+                    <p class="scholarship-card__desc">For outstanding athletes who have represented their state or country in national/international competitions.</p>
+                </div>
+                <div class="scholarship-card animate-on-scroll delay-2">
+                    <h3 class="scholarship-card__name">Need-Based Financial Aid</h3>
+                    <div class="scholarship-card__detail">Varies Based on Circumstance</div>
+                    <p class="scholarship-card__desc">Support for students from economically disadvantaged backgrounds, determined through documented income verification.</p>
+                </div>
+                <div class="scholarship-card animate-on-scroll delay-3">
+                    <h3 class="scholarship-card__name">Women in STEM Grant</h3>
+                    <div class="scholarship-card__detail">Up to 50% Tuition Waiver</div>
+                    <p class="scholarship-card__desc">Encouraging female participation in science, technology, engineering, and mathematics programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FEES OVERVIEW
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="fees-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Investment in Education</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="fees-heading" class="section-title">FEES OVERVIEW</h2>
+            </div>
+
+            <div class="fees-table-wrapper animate-on-scroll delay-1">
+                <table class="fees-table">
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Degree Type</th>
+                            <th>Duration</th>
+                            <th>Annual Fees (INR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B.Tech — Computer Science</td>
+                            <td>Undergraduate</td>
+                            <td>4 Years</td>
+                            <td>&#8377; 2,50,000</td>
+                        </tr>
+                        <tr>
+                            <td>B.Tech — Engineering</td>
+                            <td>Undergraduate</td>
+                            <td>4 Years</td>
+                            <td>&#8377; 2,20,000</td>
+                        </tr>
+                        <tr>
+                            <td>BBA / Management</td>
+                            <td>Undergraduate</td>
+                            <td>3 Years</td>
+                            <td>&#8377; 1,80,000</td>
+                        </tr>
+                        <tr>
+                            <td>M.Tech — AI &amp; ML</td>
+                            <td>Postgraduate</td>
+                            <td>2 Years</td>
+                            <td>&#8377; 3,00,000</td>
+                        </tr>
+                        <tr>
+                            <td>MBA</td>
+                            <td>Postgraduate</td>
+                            <td>2 Years</td>
+                            <td>&#8377; 3,50,000</td>
+                        </tr>
+                        <tr>
+                            <td>PhD — All Disciplines</td>
+                            <td>Doctoral</td>
+                            <td>3-5 Years</td>
+                            <td>&#8377; 1,50,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:0.8rem;color:var(--gray);text-align:center;margin-top:var(--space-sm);">* Fees are subject to revision. Contact the finance office for detailed breakdowns including hostels and lab fees.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         REQUIRED DOCUMENTS
+         ============================================= -->
+    <section class="section" aria-labelledby="documents-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Be Prepared</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="documents-heading" class="section-title">REQUIRED DOCUMENTS</h2>
+            </div>
+
+            <ul class="documents-list">
+                <li class="animate-on-scroll">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Academic Transcripts</strong> — Mark sheets and degree certificates from all previous institutions.</div>
+                </li>
+                <li class="animate-on-scroll delay-1">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Identity Proof</strong> — Government-issued photo ID (Aadhaar, Passport, or Voter ID).</div>
+                </li>
+                <li class="animate-on-scroll delay-2">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Passport-Sized Photographs</strong> — Recent passport-size photographs (minimum 6 copies).</div>
+                </li>
+                <li class="animate-on-scroll delay-3">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Entrance Test Scorecard</strong> — JBU Entrance Test or equivalent competitive exam score.</div>
+                </li>
+                <li class="animate-on-scroll delay-4">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Character Certificate</strong> — Issued by your most recent educational institution.</div>
+                </li>
+                <li class="animate-on-scroll delay-5">
+                    <span class="check-icon" aria-hidden="true">&#10003;</span>
+                    <div><strong>Category Certificate</strong> (if applicable) — For reserved category applicants seeking relaxation.</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FAQ ACCORDION
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="faq-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Got Questions?</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="faq-heading" class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <div class="accordion">
+                <!-- Q1 -->
+                <div class="accordion-item animate-on-scroll">
+                    <button class="accordion-question" aria-expanded="false">What are the eligibility criteria for undergraduate programs?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            For most undergraduate programs, candidates must have completed higher secondary education (10+2) or an equivalent qualification with a minimum aggregate of 60% in relevant subjects. Some programs may require specific subject prerequisites (e.g., Mathematics and Physics for engineering).
+                        </div>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="accordion-item animate-on-scroll delay-1">
+                    <button class="accordion-question" aria-expanded="false">Is there an entrance exam for admission?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            Yes, JBU conducts its own Entrance Test for most programs. Additionally, we accept scores from recognized national-level exams. Shortlisted candidates are also called for a personal interview or group discussion round.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="accordion-item animate-on-scroll delay-2">
+                    <button class="accordion-question" aria-expanded="false">Can I apply for multiple programs simultaneously?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            Yes, you can apply for up to three program choices in a single application. We recommend choosing programs that align with your academic background and career interests. Your preferences will be considered during the selection process.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="accordion-item animate-on-scroll delay-3">
+                    <button class="accordion-question" aria-expanded="false">Are there any scholarships available for international students?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            Yes. International students are eligible for the Merit Scholarship and Need-Based Financial Aid. Additionally, JBU has exchange partnership agreements that may reduce tuition fees for students from partner universities abroad. Contact our International Office for details.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="accordion-item animate-on-scroll delay-4">
+                    <button class="accordion-question" aria-expanded="false">What is the refund policy if I withdraw after admission?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            Refund policies are structured on a sliding scale. If you withdraw within the first week of classes, 100% of fees are refundable. Between weeks two and four, 75% is refunded. After four weeks, no refunds are processed. Please refer to the full refund policy document provided during registration.
+                        </div>
+                    </div>
+                </div>
+                <!-- Q6 -->
+                <div class="accordion-item animate-on-scroll delay-5">
+                    <button class="accordion-question" aria-expanded="false">Is hostel accommodation guaranteed for admitted students?</button>
+                    <div class="accordion-answer" role="region">
+                        <div class="accordion-answer__inner">
+                            Hostel accommodation is available on a first-come, first-served basis. While we aim to house all out-of-town students, we strongly recommend securing your hostel application early by selecting the housing option during the application process. Separate accommodations are available for male and female students.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CTA SECTION
+         ============================================= -->
+    <section class="section cta-section" aria-labelledby="cta-admissions-heading">
+        <div class="container container--narrow">
+            <div class="deco-line deco-line--center" style="background-color:rgba(255,255,255,0.5);"></div>
+            <h2 id="cta-admissions-heading" class="section-title animate-on-scroll">READY TO BEGIN?</h2>
+            <p class="animate-on-scroll delay-1">The application portal for the 2026 intake is now open. Take the first step toward a transformative education.</p>
+            <div class="cta-buttons animate-on-scroll delay-2">
+                <a href="#" class="btn btn--gold btn--large">Start Application</a>
+                <a href="contact.html" class="btn btn--secondary btn--large">Contact Admissions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Placements at Junaid Bhaimia University — 95% placement rate, top recruiters, career development services, and alumni success stories.">
+    <title>Placements — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Big Stats --- */
+        .big-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .big-stats { grid-template-columns: repeat(4, 1fr); }
+        }
+        .big-stat {
+            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        .big-stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .big-stat__number {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+        .big-stat__label {
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* --- Placement Cell Section --- */
+        .placement-cell-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .placement-cell-content { grid-template-columns: 1fr 1fr; }
+        }
+        .placement-cell-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, var(--primary), #1a2d4a);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- Services Grid --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .services-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .service-card {
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .service-card__icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: var(--space-sm); }
+        .service-card p { font-size: 0.9rem; color: var(--gray); }
+
+        /* --- Recruitment Process --- */
+        .recruit-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .recruit-steps { grid-template-columns: repeat(4, 1fr); }
+        }
+        .recruit-step {
+            padding: var(--space-lg);
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            text-align: center;
+            position: relative;
+        }
+        .recruit-step__number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin-bottom: var(--space-sm);
+        }
+        .recruit-step h3 { font-size: 1rem; margin-bottom: var(--space-xs); }
+        .recruit-step p { font-size: 0.85rem; color: var(--gray); }
+
+        /* --- Alumni Stories --- */
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+        @media (min-width: 768px) {
+            .alumni-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .alumni-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .alumni-card {
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--gold);
+            transition: all var(--transition-base);
+        }
+        .alumni-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .alumni-card__quote {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: var(--space-md);
+            line-height: 1.7;
+        }
+        .alumni-card__name { font-weight: 700; color: var(--primary); }
+        .alumni-card__role { font-size: 0.85rem; color: var(--accent); margin-top: 0.25rem; }
+        .alumni-card__batch { font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; }
+
+        /* --- Top Recruiters Placeholder --- */
+        .recruiters-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+        }
+        .recruiter-badge {
+            padding: var(--space-sm) var(--space-md);
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary);
+            transition: all var(--transition-fast);
+        }
+        .recruiter-badge:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link nav-link--active">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="placements-title">
+        <div class="container">
+            <span class="section-label text-white">Career Success</span>
+            <h1 id="placements-title" class="animate-on-scroll">PLACEMENTS &amp; CAREERS</h1>
+            <p class="animate-on-scroll delay-1">Empowering students to launch impactful careers with world-class training and industry connections.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PLACEMENT STATISTICS
+         ============================================= -->
+    <section class="section" aria-label="Placement statistics">
+        <div class="container">
+            <div class="big-stats">
+                <div class="big-stat animate-on-scroll">
+                    <div class="big-stat__number" data-target="95">0</div>
+                    <div class="big-stat__label">Percent Placement Rate</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-1">
+                    <div class="big-stat__number" data-target="18" style="font-size:clamp(1.5rem,3vw,2.5rem);">&#8377;18 LPA</div>
+                    <div class="big-stat__label">Highest Package</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-2">
+                    <div class="big-stat__number" data-target="7" style="font-size:clamp(1.5rem,3vw,2.5rem);">&#8377;7.2 LPA</div>
+                    <div class="big-stat__label">Average Package</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-3">
+                    <div class="big-stat__number" data-target="150">0</div>
+                    <div class="big-stat__label">Recruiting Companies</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         PLACEMENT CELL OVERVIEW
+         ============================================= -->
+    <section class="section" aria-labelledby="cell-heading">
+        <div class="container">
+            <div class="placement-cell-content">
+                <div class="animate-on-scroll">
+                    <span class="section-label">Your Career Partner</span>
+                    <div class="deco-line"></div>
+                    <h2 id="cell-heading" class="section-title">THE JBU PLACEMENT CELL</h2>
+                    <p>
+                        The JBU Placement &amp; Training Cell is dedicated to bridging the gap between academia and industry. Working closely with students, faculty, and corporate partners, we ensure every graduate is industry-ready.
+                    </p>
+                    <p>
+                        Our team organizes campus drives, pre-placement workshops, aptitude training, personality development sessions, and mock interviews — creating a pipeline that connects talent with opportunity.
+                    </p>
+                    <p>
+                        With relationships spanning technology, finance, consulting, healthcare, law, and more, the placement cell opens doors across every sector.
+                    </p>
+                </div>
+                <div class="placement-cell-image animate-on-scroll delay-1" aria-label="Placement cell office">
+                    <span>Placement Office</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CAREER DEVELOPMENT SERVICES
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="services-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">How We Prepare You</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="services-heading" class="section-title">CAREER DEVELOPMENT SERVICES</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-card__icon" aria-hidden="true">&#128203;</div>
+                    <h3>Aptitude &amp; Skill Training</h3>
+                    <p>Comprehensive preparation in quantitative ability, logical reasoning, verbal skills, and technical competencies.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-1">
+                    <div class="service-card__icon" aria-hidden="true">&#128188;</div>
+                    <h3>Personality Development</h3>
+                    <p>Grooming sessions, communication workshops, and professional etiquette training for interview readiness.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-2">
+                    <div class="service-card__icon" aria-hidden="true">&#128221;</div>
+                    <h3>Resume &amp; Portfolio Building</h3>
+                    <p>Expert guidance on crafting impactful resumes, LinkedIn profiles, and professional portfolios.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-3">
+                    <div class="service-card__icon" aria-hidden="true">&#128172;</div>
+                    <h3>Mock Interviews</h3>
+                    <p>Industry-experienced professionals conduct realistic mock interviews with detailed feedback.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-4">
+                    <div class="service-card__icon" aria-hidden="true">&#127760;</div>
+                    <h3>Campus Drive Coordination</h3>
+                    <p>Seamless organization of recruitment events, from company liaison to student selection logistics.</p>
+                </div>
+                <div class="service-card animate-on-scroll delay-5">
+                    <div class="service-card__icon" aria-hidden="true">&#128640;</div>
+                    <h3>Entrepreneurship Support</h3>
+                    <p>Incubation resources, mentorship, and seed funding guidance for aspiring student founders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         INTERNSHIP PROGRAMS
+         ============================================= -->
+    <section class="section" aria-labelledby="internships-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Real-World Experience</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="internships-heading" class="section-title">INTERNSHIP PROGRAMS</h2>
+                <p class="section-description" style="margin-left:auto;margin-right:auto;">
+                    Every JBU student completes at least one industry internship during their program. Our partnerships provide hands-on experience with leading organizations across sectors.
+                </p>
+            </div>
+
+            <div class="recruiters-showcase animate-on-scroll delay-1">
+                <span class="recruiter-badge">NovaTech Industries</span>
+                <span class="recruiter-badge">GreenPath Energy</span>
+                <span class="recruiter-badge">Aegis Cyber Defense</span>
+                <span class="recruiter-badge">OmniData Systems</span>
+                <span class="recruiter-badge">Atlas Aerospace Group</span>
+                <span class="recruiter-badge">CureGen Pharma</span>
+                <span class="recruiter-badge">BlueWave Maritime</span>
+                <span class="recruiter-badge">Vertex Consulting</span>
+                <span class="recruiter-badge">Quantum Financial</span>
+                <span class="recruiter-badge">Horizon Healthcare</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RECRUITMENT PROCESS
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="recruit-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">How It Works</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="recruit-heading" class="section-title">THE RECRUITMENT PIPELINE</h2>
+            </div>
+
+            <div class="recruit-steps">
+                <div class="recruit-step animate-on-scroll">
+                    <div class="recruit-step__number">01</div>
+                    <h3>Pre-Placement Training</h3>
+                    <p>Students undergo structured training covering aptitude, technical skills, and interview preparation.</p>
+                </div>
+                <div class="recruit-step animate-on-scroll delay-1">
+                    <div class="recruit-step__number">02</div>
+                    <h3>Online Assessment</h3>
+                    <p>Companies conduct online tests evaluating logical reasoning, coding ability, and domain knowledge.</p>
+                </div>
+                <div class="recruit-step animate-on-scroll delay-2">
+                    <div class="recruit-step__number">03</div>
+                    <h3>Technical &amp; HR Rounds</h3>
+                    <p>Shortlisted candidates face technical interviews followed by HR rounds assessing cultural fit.</p>
+                </div>
+                <div class="recruit-step animate-on-scroll delay-3">
+                    <div class="recruit-step__number">04</div>
+                    <h3>Offer Letter &amp; Onboarding</h3>
+                    <p>Selected students receive offer letters and are guided through the onboarding process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ALUMNI SUCCESS STORIES
+         ============================================= -->
+    <section class="section" aria-labelledby="alumni-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Our Graduates Succeed</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="alumni-heading" class="section-title">ALUMNI SUCCESS STORIES</h2>
+            </div>
+
+            <div class="alumni-grid">
+                <div class="alumni-card animate-on-scroll">
+                    <blockquote class="alumni-card__quote">"JBU's placement cell was instrumental in securing my role at NovaTech. The mock interviews and resume workshops gave me the confidence I needed."</blockquote>
+                    <div class="alumni-card__name">Rohan Deshmukh</div>
+                    <div class="alumni-card__role">Software Engineer at NovaTech Industries</div>
+                    <div class="alumni-card__batch">B.Tech CS, Batch of 2024</div>
+                </div>
+                <div class="alumni-card animate-on-scroll delay-1">
+                    <blockquote class="alumni-card__quote">"From intern to full-time offer — my summer internship at GreenPath led directly to a leadership role. JBU truly prepares you for the real world."</blockquote>
+                    <div class="alumni-card__name">Ananya Krishnamurthy</div>
+                    <div class="alumni-card__role">Energy Analyst at GreenPath Energy Corp</div>
+                    <div class="alumni-card__batch">MBA, Batch of 2023</div>
+                </div>
+                <div class="alumni-card animate-on-scroll delay-2">
+                    <blockquote class="alumni-card__quote">"The entrepreneurship support at JBU helped me launch my startup. From mentorship to seed funding, the university had my back every step of the way."</blockquote>
+                    <div class="alumni-card__name">Vikram Patel</div>
+                    <div class="alumni-card__role">Founder &amp; CEO, NexaBuild Solutions</div>
+                    <div class="alumni-card__batch">B.Tech Engineering, Batch of 2022</div>
+                </div>
+                <div class="alumni-card animate-on-scroll delay-3">
+                    <blockquote class="alumni-card__quote">"I walked into my final interview feeling completely prepared. The personality development program at JBU transformed how I communicate and present myself."</blockquote>
+                    <div class="alumni-card__name">Meera Iyer</div>
+                    <div class="alumni-card__role">Management Trainee at Vertex Consulting</div>
+                    <div class="alumni-card__batch">BBA, Batch of 2024</div>
+                </div>
+                <div class="alumni-card animate-on-scroll delay-4">
+                    <blockquote class="alumni-card__quote">"My research during my PhD opened doors to opportunities I never imagined. JBU's research ecosystem is unmatched for anyone serious about scientific contribution."</blockquote>
+                    <div class="alumni-card__name">Dr. Nathan Osei</div>
+                    <div class="alumni-card__role">Research Scientist at CureGen Pharmaceuticals</div>
+                    <div class="alumni-card__batch">PhD Biomedical Sciences, Batch of 2023</div>
+                </div>
+                <div class="alumni-card animate-on-scroll delay-5">
+                    <blockquote class="alumni-card__quote">"JBU's LL.B. program combined academic rigor with practical moot court experience. Today, I practice corporate law at a leading firm because of that foundation."</blockquote>
+                    <div class="alumni-card__name">Arjun Menon</div>
+                    <div class="alumni-card__role">Corporate Lawyer at Silverstein &amp; Associates</div>
+                    <div class="alumni-card__batch">BA LL.B. (Hons.), Batch of 2023</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CTA SECTION
+         ============================================= -->
+    <section class="section cta-section" aria-labelledby="cta-placements-heading">
+        <div class="container container--narrow">
+            <div class="deco-line deco-line--center" style="background-color:rgba(255,255,255,0.5);"></div>
+            <h2 id="cta-placements-heading" class="section-title animate-on-scroll">BUILD YOUR FUTURE AT JBU</h2>
+            <p class="animate-on-scroll delay-1">Join a community where every graduate is equipped with the skills, experience, and connections to thrive.</p>
+            <div class="cta-buttons animate-on-scroll delay-2">
+                <a href="admissions.html" class="btn btn--gold btn--large">Apply Now</a>
+                <a href="contact.html" class="btn btn--secondary btn--large">Contact Placement Cell</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

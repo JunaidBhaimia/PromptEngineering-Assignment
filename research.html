@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Research at Junaid Bhaimia University — Explore our research centers, innovation labs, publications, patents, and industry partnerships.">
+    <title>Research — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Big Stats Grid --- */
+        .big-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .big-stats { grid-template-columns: repeat(4, 1fr); }
+        }
+        .big-stat {
+            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        .big-stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .big-stat__number {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+        .big-stat__label {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* --- Research Centers --- */
+        .centers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+        @media (min-width: 768px) {
+            .centers-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .center-card {
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--gold);
+            transition: all var(--transition-base);
+        }
+        .center-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-top-color: var(--accent); }
+        .center-card__icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        .center-card h3 { font-size: 1.2rem; margin-bottom: var(--space-sm); color: var(--primary); }
+        .center-card p { font-size: 0.9rem; color: var(--gray); }
+        .center-card__focus {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* --- Innovation Labs --- */
+        .labs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 992px) {
+            .labs-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .lab-card {
+            padding: var(--space-lg);
+            background: linear-gradient(135deg, var(--primary), #1a2d4a);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            transition: all var(--transition-base);
+        }
+        .lab-card:hover { transform: translateY(-4px); }
+        .lab-card h3 { color: var(--white); font-size: 1.15rem; margin-bottom: var(--space-sm); }
+        .lab-card p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+        .lab-card__status {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background-color: rgba(201, 162, 39, 0.2);
+            color: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* --- Partnerships --- */
+        .partners-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+        }
+        @media (min-width: 768px) {
+            .partners-list { grid-template-columns: repeat(4, 1fr); }
+        }
+        .partner-item {
+            padding: var(--space-md);
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary);
+            transition: all var(--transition-fast);
+        }
+        .partner-item:hover { background-color: var(--primary); color: var(--white); }
+
+        /* --- Opportunities --- */
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+        @media (min-width: 768px) {
+            .opportunities-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .opportunity-card {
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .opportunity-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--gold));
+        }
+        .opportunity-card h3 { font-size: 1.15rem; margin-bottom: var(--space-sm); }
+        .opportunity-card p { font-size: 0.9rem; color: var(--gray); }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link nav-link--active">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="research-title">
+        <div class="container">
+            <span class="section-label text-white">Pushing Boundaries</span>
+            <h1 id="research-title" class="animate-on-scroll">RESEARCH &amp; INNOVATION</h1>
+            <p class="animate-on-scroll delay-1">Advancing knowledge through groundbreaking discovery, collaboration, and creative problem-solving.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RESEARCH STATISTICS
+         ============================================= -->
+    <section class="section" aria-label="Research statistics">
+        <div class="container">
+            <div class="big-stats">
+                <div class="big-stat animate-on-scroll">
+                    <div class="big-stat__number" data-target="250">0</div>
+                    <div class="big-stat__label">Research Projects</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-1">
+                    <div class="big-stat__number" data-target="80">0</div>
+                    <div class="big-stat__label">Patents Filed</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-2">
+                    <div class="big-stat__number" data-target="150">0</div>
+                    <div class="big-stat__label">Publications</div>
+                </div>
+                <div class="big-stat animate-on-scroll delay-3">
+                    <div class="big-stat__number" data-target="40">0</div>
+                    <div class="big-stat__label">Industry Partnerships</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RESEARCH OVERVIEW
+         ============================================= -->
+    <section class="section" aria-labelledby="overview-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Our Approach</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="overview-heading" class="section-title">RESEARCH WITH PURPOSE</h2>
+            </div>
+            <p class="section-description animate-on-scroll" style="margin-left:auto;margin-right:auto;">
+                At JBU, research drives everything we do. Our faculty and students work across disciplines to tackle the world's most pressing challenges — from climate change and sustainable energy to artificial intelligence and public health. We believe that discovery begins with curiosity and ends with impact.
+            </p>
+            <p class="section-description animate-on-scroll delay-1" style="margin-left:auto;margin-right:auto;">
+                With dedicated research centers, state-of-the-art innovation labs, and strong industry partnerships, JBU provides an environment where bold ideas become reality. Whether you're a doctoral candidate or an undergraduate exploring your first research project, there are pathways here for every stage of your academic journey.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RESEARCH CENTERS
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="centers-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Centers of Excellence</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="centers-heading" class="section-title">RESEARCH CENTERS</h2>
+            </div>
+
+            <div class="centers-grid">
+                <div class="center-card animate-on-scroll">
+                    <div class="center-card__icon" aria-hidden="true">&#129302;</div>
+                    <h3>Center for Artificial Intelligence &amp; Data Science</h3>
+                    <p>Advancing machine learning, natural language processing, computer vision, and ethical AI applications across industries.</p>
+                    <span class="center-card__focus">40+ Researchers | 12 Active Projects</span>
+                </div>
+                <div class="center-card animate-on-scroll delay-1">
+                    <div class="center-card__icon" aria-hidden="true">&#127758;</div>
+                    <h3>Center for Sustainable Energy &amp; Environment</h3>
+                    <p>Pioneering renewable energy solutions, carbon capture technologies, and climate resilience strategies.</p>
+                    <span class="center-card__focus">30+ Researchers | 8 Active Projects</span>
+                </div>
+                <div class="center-card animate-on-scroll delay-2">
+                    <div class="center-card__icon" aria-hidden="true">&#128138;</div>
+                    <h3>Center for Biomedical &amp; Health Research</h3>
+                    <p>Bridging basic science and clinical application through innovative studies in genomics, epidemiology, and healthcare technology.</p>
+                    <span class="center-card__focus">35+ Researchers | 10 Active Projects</span>
+                </div>
+                <div class="center-card animate-on-scroll delay-3">
+                    <div class="center-card__icon" aria-hidden="true">&#9878;</div>
+                    <h3>Center for Law &amp; Policy Studies</h3>
+                    <p>Examining legal frameworks for emerging technologies, digital privacy, constitutional rights, and international law.</p>
+                    <span class="center-card__focus">25+ Researchers | 6 Active Projects</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         INNOVATION LABS
+         ============================================= -->
+    <section class="section" aria-labelledby="labs-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Where Ideas Take Shape</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="labs-heading" class="section-title">INNOVATION LABS</h2>
+            </div>
+
+            <div class="labs-grid">
+                <div class="lab-card animate-on-scroll">
+                    <h3>JBU Robotics Lab</h3>
+                    <p>Designing autonomous systems, drones, and robotic assistants for industrial and humanitarian applications.</p>
+                    <span class="lab-card__status">Active</span>
+                </div>
+                <div class="lab-card animate-on-scroll delay-1">
+                    <h3>Quantum Computing Initiative</h3>
+                    <p>Exploring quantum algorithms, cryptography, and next-generation computational models.</p>
+                    <span class="lab-card__status">Pilot Phase</span>
+                </div>
+                <div class="lab-card animate-on-scroll delay-2">
+                    <h3>Materials Science Laboratory</h3>
+                    <p>Developing advanced composites, nanomaterials, and sustainable manufacturing processes.</p>
+                    <span class="lab-card__status">Active</span>
+                </div>
+                <div class="lab-card animate-on-scroll delay-3">
+                    <h3>Digital Humanities Lab</h3>
+                    <p>Using computational tools to preserve cultural heritage, analyze literary texts, and digitize archives.</p>
+                    <span class="lab-card__status">Active</span>
+                </div>
+                <div class="lab-card animate-on-scroll delay-4">
+                    <h3>Cybersecurity Operations Center</h3>
+                    <p>Conducting threat research, penetration testing, and developing defensive cybersecurity frameworks.</p>
+                    <span class="lab-card__status">Active</span>
+                </div>
+                <div class="lab-card animate-on-scroll delay-5">
+                    <h3>Spatial &amp; Urban Analytics Lab</h3>
+                    <p>Leveraging GIS, remote sensing, and urban modeling for smart city planning and disaster management.</p>
+                    <span class="lab-card__status">Active</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         INDUSTRY PARTNERSHIPS
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="partnerships-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Collaborating Beyond Campus</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="partnerships-heading" class="section-title">INDUSTRY PARTNERSHIPS</h2>
+                <p class="section-description" style="margin-left:auto;margin-right:auto;">We partner with leading organizations worldwide to translate research into real-world solutions.</p>
+            </div>
+
+            <div class="partners-list animate-on-scroll delay-1">
+                <div class="partner-item">NovaTech Industries</div>
+                <div class="partner-item">GreenPath Energy Corp</div>
+                <div class="partner-item">Aegis Cyber Defense</div>
+                <div class="partner-item">MedCore Research Foundation</div>
+                <div class="partner-item">OmniData Systems</div>
+                <div class="partner-item">Atlas Aerospace Group</div>
+                <div class="partner-item">CureGen Pharmaceuticals</div>
+                <div class="partner-item">BlueWave Maritime Tech</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         RESEARCH OPPORTUNITIES
+         ============================================= -->
+    <section class="section" aria-labelledby="opportunities-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Get Involved</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="opportunities-heading" class="section-title">RESEARCH OPPORTUNITIES</h2>
+            </div>
+
+            <div class="opportunities-grid">
+                <div class="opportunity-card animate-on-scroll">
+                    <h3>Undergraduate Research Fellowship</h3>
+                    <p>Work alongside faculty mentors on active research projects during your undergraduate studies. Ideal for 3rd and 4th year students seeking hands-on experience.</p>
+                </div>
+                <div class="opportunity-card animate-on-scroll delay-1">
+                    <h3>Summer Research Internship</h3>
+                    <p>A ten-week intensive program where students contribute to ongoing research with a stipend and travel support for presenting findings at conferences.</p>
+                </div>
+                <div class="opportunity-card animate-on-scroll delay-2">
+                    <h3>Graduate Research Assistantships</h3>
+                    <p>M.Tech and PhD candidates receive funding support while working as research assistants on department-funded projects with full lab access.</p>
+                </div>
+                <div class="opportunity-card animate-on-scroll delay-3">
+                    <h3>Seed Grant Program</h3>
+                    <p>Faculty and doctoral researchers can apply for seed funding (up to INR 10 lakhs) to launch new exploratory research proposals in emerging areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CTA SECTION
+         ============================================= -->
+    <section class="section cta-section" aria-labelledby="cta-research-heading">
+        <div class="container container--narrow">
+            <div class="deco-line deco-line--center" style="background-color:rgba(255,255,255,0.5);"></div>
+            <h2 id="cta-research-heading" class="section-title animate-on-scroll">DISCOVER WHAT'S POSSIBLE</h2>
+            <p class="animate-on-scroll delay-1">Whether you're a researcher, a student, or an industry partner — explore how JBU's research ecosystem can advance your goals.</p>
+            <div class="cta-buttons animate-on-scroll delay-2">
+                <a href="#" class="btn btn--gold btn--large">Submit Research Proposal</a>
+                <a href="contact.html" class="btn btn--secondary btn--large">Contact Research Office</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

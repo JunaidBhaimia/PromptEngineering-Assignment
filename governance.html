@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leadership &amp; Governance at Junaid Bhaimia University — Meet our Chancellor, Vice Chancellor, board members, and senior leadership team.">
+    <title>Leadership &amp; Governance — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+
+        .page-banner h1 {
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-banner p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: var(--space-sm) auto 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Board Meeting Photo --- */
+        .board-meeting-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .board-meeting-image {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            background: linear-gradient(135deg, var(--dark), #1a2d4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .board-meeting-caption {
+            padding: var(--space-lg);
+            text-align: center;
+            background-color: var(--cream);
+        }
+
+        .board-meeting-caption blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--dark);
+            max-width: 700px;
+            margin: 0 auto 0;
+        }
+
+        /* --- Leadership Profile Cards --- */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+
+        @media (min-width: 768px) {
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .leadership-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .leader-card {
+            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+
+        .leader-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .leader-card__portrait {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: url('https://picsum.photos/seed/jbu-leader-a/400/400') center/cover;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            border: 4px solid var(--gold);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .leader-card__position {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: var(--space-xs);
+        }
+
+        .leader-card__name {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .leader-card__bio {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* --- Board Members Grid --- */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .board-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .board-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .board-member-card {
+            text-align: center;
+            padding: var(--space-lg) var(--space-md);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .board-member-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .board-member-card__avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: url('https://picsum.photos/seed/jbu-board-a/240/240') center/cover;
+            margin: 0 auto var(--space-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .board-member-card__name {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .board-member-card__role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .board-member-card__desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .board-member-card__click-hint {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+        }
+
+        .modal--open {
+            display: flex !important;
+        }
+
+        .modal {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal__header {
+            padding: var(--space-xl) var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+
+        .modal__avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: url('https://picsum.photos/seed/jbu-modal-a/300/300') center/cover;
+            margin: 0 auto var(--space-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            border: 4px solid var(--gold);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal__close-btn {
+            position: absolute;
+            top: var(--space-md);
+            right: var(--space-md);
+            width: 36px;
+            height: 36px;
+            border: none;
+            background-color: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .modal__close-btn:hover {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .modal__body {
+            padding: 0 var(--space-xl) var(--space-xl);
+        }
+
+        .modal-section {
+            margin-bottom: var(--space-md);
+        }
+
+        .modal-section__label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: var(--space-xs);
+        }
+
+        .modal-section__content {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220" />
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1" />
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif"
+                        font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link nav-link--active">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="governance-title">
+        <div class="container">
+            <span class="section-label text-white">Who Leads JBU</span>
+            <h1 id="governance-title" class="animate-on-scroll">LEADERSHIP &amp; GOVERNANCE</h1>
+            <p class="animate-on-scroll delay-1">Guided by vision, driven by integrity — meet the leaders shaping the
+                future of Junaid Bhaimia University.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         BOARD MEETING SECTION
+         ============================================= -->
+    <section class="board-meeting-section animate-on-scroll">
+        <img src="https://picsum.photos/seed/jbu-board-meeting/1920/800"
+            alt="Board of Governors Meeting at Junaid Bhaimia University"
+            style="width:100%;aspect-ratio:21/9;object-fit:cover;display:block;border-radius:var(--border-radius);box-shadow:var(--shadow-lg);"
+            loading="lazy">
+        <div class="board-meeting-caption">
+            <blockquote>
+                The Board of Governors convenes quarterly to guide strategic direction, review institutional
+                performance, and ensure JBU's continued commitment to academic excellence and responsible leadership.
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- =============================================
+         UNIVERSITY LEADERSHIP
+         ============================================= -->
+    <section class="section" aria-labelledby="leadership-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Senior Leadership</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="leadership-heading" class="section-title">UNIVERSITY LEADERSHIP</h2>
+            </div>
+
+            <div class="leadership-grid">
+                <!-- Chancellor -->
+                <div class="leader-card animate-on-scroll">
+                    <img src="https://cdn.marvel.com/content/1x/212rdr_com_crd_01.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">RB</div> -->
+                    <div class="leader-card__position">Chancellor</div>
+                    <h3 class="leader-card__name">Dr. Rajendra</h3>
+                    <p class="leader-card__bio">Founder and Chancellor of JBU, Dr. Bhaimia is a visionary educator with
+                        over four decades of experience in academic leadership and nation-building through education.
+                    </p>
+                </div>
+                <!-- Vice Chancellor -->
+                <div class="leader-card animate-on-scroll delay-1">
+                    <img src="https://cdn.marvel.com/content/1x/1078mob_ons_crd_01.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">SP</div> -->
+                    <div class="leader-card__position">Vice Chancellor</div>
+                    <h3 class="leader-card__name">Prof. Agent Mobius</h3>
+                    <p class="leader-card__bio">A distinguished scholar in computational science, Prof. Agent Mobius
+                        brings 30
+                        years of academic and administrative experience to her role as Vice Chancellor.</p>
+                </div>
+                <!-- Pro Vice Chancellor -->
+                <div class="leader-card animate-on-scroll delay-2">
+                    <img src="https://cdn.marvel.com/content/1x/214thg_com_crd_01.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">MK</div> -->
+                    <div class="leader-card__position">Pro Vice Chancellor</div>
+                    <h3 class="leader-card__name">Prof. Michael Koroma</h3>
+                    <p class="leader-card__bio">Prof. Koroma oversees research and international collaboration, having
+                        previously led institutions across three continents.</p>
+                </div>
+                <!-- Registrar -->
+                <div class="leader-card animate-on-scroll delay-3">
+                    <img src="https://cdn.marvel.com/content/1x/300glc_com_crd_01.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">AN</div> -->
+                    <div class="leader-card__position">Registrar</div>
+                    <h3 class="leader-card__name">Mr. Amit Nair</h3>
+                    <p class="leader-card__bio">With 25 years in higher education administration, Mr. Nair ensures
+                        smooth academic operations and policy implementation across all faculties.</p>
+                </div>
+                <!-- Finance Officer -->
+                <div class="leader-card animate-on-scroll delay-4">
+                    <img src="https://cdn.marvel.com/content/1x/211sus_com_crd_01.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">LD</div> -->
+                    <div class="leader-card__position">Finance Officer</div>
+                    <h3 class="leader-card__name">Dr. Lakshmi Das</h3>
+                    <p class="leader-card__bio">Chartered Accountant and financial strategist, Dr. Das manages JBU's
+                        multi-crore budget with transparency and fiscal discipline.</p>
+                </div>
+                <!-- Controller of Examinations -->
+                <div class="leader-card animate-on-scroll delay-5">
+                    <img src="https://cdn.marvel.com/content/1x/102mag_com_crd_01_0.webp">
+                    <!-- <div class="leader-card__portrait" aria-hidden="true">RG</div> -->
+                    <div class="leader-card__position">Controller of Examinations</div>
+                    <h3 class="leader-card__name">Dr. Ramesh Gupta</h3>
+                    <p class="leader-card__bio">Dr. Gupta oversees examination conduct, result processing, and
+                        accreditation compliance for all 120+ programs with precision and fairness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         BOARD MEMBERS
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="board-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Governing Body</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="board-heading" class="section-title">BOARD OF GOVERNORS</h2>
+                <p class="section-description" style="margin-left:auto;margin-right:auto;">Our diverse board brings
+                    together perspectives from academia, industry, government, alumni, and community leadership.</p>
+            </div>
+
+            <div class="board-grid">
+                <!-- Chairman -->
+                <div class="board-member-card animate-on-scroll" data-name="Mrs. Kavita Mehta"
+                    data-position="Chairman, Board of Governors"
+                    data-bio="Mrs. Kavita Mehta is a renowned industrialist and social entrepreneur who has served on boards of several national institutions. Her expertise in corporate governance and philanthropy strengthens JBU's strategic direction."
+                    data-qualifications="MBA (IIM Ahmedabad), Ph.D. in Economics"
+                    data-experience="35+ years in business leadership and public service">
+                    <img src="https://cdn.marvel.com/content/1x/1607bdb_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">KM</div> -->
+                    <div class="board-member-card__name">Mrs. Kavita Mehta</div>
+                    <div class="board-member-card__role">Chairman</div>
+                    <div class="board-member-card__desc">Renowned industrialist and social entrepreneur</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Academic Rep -->
+                <div class="board-member-card animate-on-scroll delay-1" data-name="Prof. Elena Vasquez"
+                    data-position="Academic Representative"
+                    data-bio="Prof. Vasquez is a professor of comparative literature and former dean at a leading European university. She brings deep academic governance experience and a global perspective to JBU's board."
+                    data-qualifications="Ph.D. in Comparative Literature (University of Oxford)"
+                    data-experience="28 years in academia and educational policy">
+                    <img src="https://cdn.marvel.com/content/1x/124irh_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">EV</div> -->
+                    <div class="board-member-card__name">Prof. Elena Vasquez</div>
+                    <div class="board-member-card__role">Academic Representative</div>
+                    <div class="board-member-card__desc">Former dean, leading European university</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Industry Rep -->
+                <div class="board-member-card animate-on-scroll delay-2" data-name="Mr. Sanjay Agarwal"
+                    data-position="Industry Representative"
+                    data-bio="Mr. Agarwal is CEO of one of India's largest technology firms. His industry insights ensure JBU's programs remain aligned with workforce demands and technological advancement."
+                    data-qualifications="B.Tech (IIT Delhi), Executive MBA (Wharton)"
+                    data-experience="30 years in technology leadership">
+                    <img src="https://cdn.marvel.com/content/1x/190bhm_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">SA</div> -->
+                    <div class="board-member-card__name">Mr. Sanjay Agarwal</div>
+                    <div class="board-member-card__role">Industry Representative</div>
+                    <div class="board-member-card__desc">CEO, major technology firm</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Government Rep -->
+                <div class="board-member-card animate-on-scroll delay-3" data-name="Dr. Fatima Al-Rashid"
+                    data-position="Government Representative"
+                    data-bio="Dr. Al-Rashid served as Secretary of Education in the state government for eight years. She provides critical insight into policy alignment and regulatory frameworks."
+                    data-qualifications="Ph.D. in Public Policy, M.A. in Education"
+                    data-experience="25 years in government and education policy">
+                    <img src="https://cdn.marvel.com/content/1x/327zlm_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">FA</div> -->
+                    <div class="board-member-card__name">Dr. Fatima Al-Rashid</div>
+                    <div class="board-member-card__role">Government Representative</div>
+                    <div class="board-member-card__desc">Former State Education Secretary</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Alumni Rep -->
+                <div class="board-member-card animate-on-scroll delay-4" data-name="Ms. Priya Sharma"
+                    data-position="Alumni Representative"
+                    data-bio="A JBU alumna (MBA, Batch of 2010), Ms. Sharma now leads product strategy at a Fortune 500 company. She advocates for alumni engagement and student development."
+                    data-qualifications="MBA (JBU), B.Com (University of Mumbai)"
+                    data-experience="16 years in business and product management">
+                    <img src="https://cdn.marvel.com/content/1x/1371shb_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">PS</div> -->
+                    <div class="board-member-card__name">Ms. Priya Sharma</div>
+                    <div class="board-member-card__role">Alumni Representative</div>
+                    <div class="board-member-card__desc">Product Lead, Fortune 500 company</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Faculty Rep -->
+                <div class="board-member-card animate-on-scroll" data-name="Prof. David Okonkwo"
+                    data-position="Faculty Representative"
+                    data-bio="Dean of the Faculty of Computing at JBU, Prof. Okonkwo represents faculty interests on the board and champions pedagogical innovation and research excellence."
+                    data-qualifications="Ph.D. in Computer Science (MIT)"
+                    data-experience="22 years in computing education and AI research">
+                    <img src="https://cdn.marvel.com/content/1x/469mdo_ons_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">DO</div> -->
+                    <div class="board-member-card__name">Prof. David Okonkwo</div>
+                    <div class="board-member-card__role">Faculty Representative</div>
+                    <div class="board-member-card__desc">Dean, Faculty of Computing</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- External Member -->
+                <div class="board-member-card animate-on-scroll delay-1" data-name="Dr. Wei Chen"
+                    data-position="External Member"
+                    data-bio="An internationally recognized environmental scientist and UN advisor, Dr. Chen brings independent oversight and global best practices to JBU's governance."
+                    data-qualifications="Ph.D. in Environmental Science (Stanford)"
+                    data-experience="20 years in environmental research and UN advisory">
+                    <img src="https://cdn.marvel.com/content/1x/010ant_ons_crd_05.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">WC</div> -->
+                    <div class="board-member-card__name">Dr. Wei Chen</div>
+                    <div class="board-member-card__role">External Member</div>
+                    <div class="board-member-card__desc">UN Advisor, environmental scientist</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+                <!-- Finance Rep -->
+                <div class="board-member-card animate-on-scroll delay-2" data-name="Mr. Harold Price"
+                    data-position="Finance Representative"
+                    data-bio="Mr. Price is a chartered accountant and venture capitalist with deep expertise in institutional finance, investment strategy, and sustainable funding models."
+                    data-qualifications="CA, M.Fin. (London Business School)"
+                    data-experience="28 years in finance and venture capital">
+                    <img src="https://cdn.marvel.com/content/1x/1374bst_com_crd_01.webp">
+                    <!-- <div class="board-member-card__avatar" aria-hidden="true">HP</div> -->
+                    <div class="board-member-card__name">Mr. Harold Price</div>
+                    <div class="board-member-card__role">Finance Representative</div>
+                    <div class="board-member-card__desc">Chartered Accountant, venture capitalist</div>
+                    <span class="board-member-card__click-hint">&#9679; Click for details</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         MODAL FOR MEMBER DETAILS
+         ============================================= -->
+    <div id="member-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-member-name">
+        <div class="modal">
+            <button id="modal-close" class="modal__close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal__header">
+                <div class="modal__avatar" id="modal-avatar" aria-hidden="true"></div>
+                <h2 id="modal-member-name" class="modal-member-name"
+                    style="font-size:1.5rem;margin-bottom:var(--space-xs);"></h2>
+                <div class="modal-member-position"
+                    style="font-size:0.85rem;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase;">
+                </div>
+            </div>
+            <div class="modal__body">
+                <div class="modal-section">
+                    <div class="modal-section__label">Biography</div>
+                    <div class="modal-section__content modal-member-bio"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section__label">Qualifications</div>
+                    <div class="modal-section__content modal-member-qualifications"></div>
+                </div>
+                <div class="modal-section">
+                    <div class="modal-section__label">Experience</div>
+                    <div class="modal-section__content modal-member-experience"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid"
+                style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo"
+                        style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a" />
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1" />
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle"
+                                font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.
+                            </div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge,
+                        innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4
+                        style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">
+                        University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership
+                                &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a>
+                        </li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">
+                        Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a>
+                        </li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply
+                                Now</a></li>
+                        <li><a href="admissions.html"
+                                style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">
+                        Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a>
+                        </li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">
+                        Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a>
+                        </li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University.
+                    All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

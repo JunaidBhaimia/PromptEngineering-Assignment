@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Junaid Bhaimia University — Get in touch for admissions, general enquiries, campus visits, or feedback.">
+    <title>Contact — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Contact Info Cards --- */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .contact-info-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .contact-info-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .contact-info-card {
+            text-align: center;
+            padding: var(--space-lg);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        .contact-info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .contact-info-card__icon {
+            width: 56px;
+            height: 56px;
+            background-color: rgba(201, 162, 39, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin: 0 auto var(--space-md);
+        }
+        .contact-info-card h3 { font-size: 1rem; margin-bottom: var(--space-sm); }
+        .contact-info-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.6; }
+        .contact-info-card a { color: var(--accent); font-weight: 600; }
+        .contact-info-card a:hover { color: var(--primary); }
+
+        /* --- Form & Info Layout --- */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+        @media (min-width: 768px) {
+            .contact-layout { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- Form Styles --- */
+        .form-group {
+            margin-bottom: var(--space-md);
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        .form-group label .required {
+            color: var(--accent);
+            margin-left: 0.25rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            font-family: var(--font-body);
+            outline: none;
+            transition: border-color var(--transition-fast);
+        }
+        .input-field:focus { border-color: var(--accent); }
+        .input-field.input-error { border-color: #dc2626; }
+        textarea.input-field {
+            min-height: 150px;
+            resize: vertical;
+        }
+        select.input-field {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%236b7280'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+        .field-error {
+            display: none;
+            font-size: 0.8rem;
+            color: #dc2626;
+            margin-top: 0.25rem;
+        }
+        .form-group.has-error .field-error { display: block; }
+
+        .form-success {
+            padding: var(--space-xl);
+            background-color: rgba(155, 28, 49, 0.05);
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+        }
+        .submit-btn:hover { background-color: #7d1729; }
+        .submit-btn:disabled { background-color: var(--gray); cursor: not-allowed; }
+
+        /* --- Office Hours --- */
+        .office-hours-table {
+            width: 100%;
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--light-gray);
+            font-size: 0.9rem;
+        }
+        .hours-row__day { font-weight: 600; color: var(--primary); }
+        .hours-row__time { color: var(--gray); }
+
+        /* --- Map Placeholder --- */
+        .map-placeholder {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            background: linear-gradient(135deg, var(--cream), var(--light-gray));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* --- Social Links --- */
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background-color: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--primary);
+            transition: all var(--transition-fast);
+        }
+        .social-link:hover {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- Quick Enquiry Section --- */
+        .enquiry-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .enquiry-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        .enquiry-card {
+            padding: var(--space-lg);
+            background-color: var(--cream);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--gold);
+        }
+        .enquiry-card h3 { font-size: 1.1rem; margin-bottom: var(--space-sm); }
+        .enquiry-card p { font-size: 0.9rem; color: var(--gray); margin-bottom: var(--space-xs); }
+        .enquiry-card a { color: var(--accent); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link nav-link--active">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="contact-title">
+        <div class="container">
+            <span class="section-label text-white">Get In Touch</span>
+            <h1 id="contact-title" class="animate-on-scroll">CONTACT US</h1>
+            <p class="animate-on-scroll delay-1">Have a question about admissions, programs, or campus life? We'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CONTACT INFO CARDS
+         ============================================= -->
+    <section style="padding-top:var(--space-xl);">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-info-card animate-on-scroll">
+                    <div class="contact-info-card__icon" aria-hidden="true">&#128205;</div>
+                    <h3>Campus Address</h3>
+                    <p>
+                        Junaid Bhaimia University<br>
+                        Knowledge Park, Sector 42<br>
+                        Gurugram, Haryana 122001<br>
+                        India
+                    </p>
+                </div>
+                <div class="contact-info-card animate-on-scroll delay-1">
+                    <div class="contact-info-card__icon" aria-hidden="true">&#128222;</div>
+                    <h3>Phone</h3>
+                    <p>
+                        General Enquiries:<br>
+                        <a href="tel:+911244001000">+91 124 400 1000</a><br><br>
+                        Admissions:<br>
+                        <a href="tel:+911244001001">+91 124 400 1001</a>
+                    </p>
+                </div>
+                <div class="contact-info-card animate-on-scroll delay-2">
+                    <div class="contact-info-card__icon" aria-hidden="true">&#9993;</div>
+                    <h3>Email</h3>
+                    <p>
+                        General:<br>
+                        <a href="mailto:info@jbuniversity.edu">info@jbuniversity.edu</a><br><br>
+                        Admissions:<br>
+                        <a href="mailto:admissions@jbuniversity.edu">admissions@jbuniversity.edu</a>
+                    </p>
+                </div>
+                <div class="contact-info-card animate-on-scroll delay-3">
+                    <div class="contact-info-card__icon" aria-hidden="true">&#128336;</div>
+                    <h3>Office Hours</h3>
+                    <p>
+                        Monday – Friday<br>
+                        9:00 AM – 5:00 PM<br><br>
+                        Saturday: 9:00 AM – 1:00 PM
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         QUICK ENQUIRY CATEGORIES
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="enquiry-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Who to Contact</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="enquiry-heading" class="section-title">QUICK ENQUIRY DIRECTORY</h2>
+            </div>
+
+            <div class="enquiry-cards">
+                <div class="enquiry-card animate-on-scroll">
+                    <h3>Admissions Office</h3>
+                    <p>Program inquiries, application status, scholarship details, fee structures, and document submission.</p>
+                    <p>Phone: <a href="tel:+911244001001">+91 124 400 1001</a></p>
+                    <p>Email: <a href="mailto:admissions@jbuniversity.edu">admissions@jbuniversity.edu</a></p>
+                </div>
+                <div class="enquiry-card animate-on-scroll delay-1">
+                    <h3>Student Services</h3>
+                    <p>Hostel accommodation, transport, ID cards, examination schedules, and academic records.</p>
+                    <p>Phone: <a href="tel:+911244001002">+91 124 400 1002</a></p>
+                    <p>Email: <a href="mailto:studentservices@jbuniversity.edu">studentservices@jbuniversity.edu</a></p>
+                </div>
+                <div class="enquiry-card animate-on-scroll delay-2">
+                    <h3>Placement Cell</h3>
+                    <p>Campus recruitment drives, internship opportunities, career counseling, and training programs.</p>
+                    <p>Phone: <a href="tel:+911244001003">+91 124 400 1003</a></p>
+                    <p>Email: <a href="mailto:placements@jbuniversity.edu">placements@jbuniversity.edu</a></p>
+                </div>
+                <div class="enquiry-card animate-on-scroll delay-3">
+                    <h3>Research Office</h3>
+                    <p>Research proposals, grant applications, publication support, and industry collaboration inquiries.</p>
+                    <p>Phone: <a href="tel:+911244001004">+91 124 400 1004</a></p>
+                    <p>Email: <a href="mailto:research@jbuniversity.edu">research@jbuniversity.edu</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CONTACT FORM + OFFICE HOURS
+         ============================================= -->
+    <section class="section" aria-labelledby="form-heading">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="animate-on-scroll">
+                    <span class="section-label">Write to Us</span>
+                    <div class="deco-line"></div>
+                    <h2 id="form-heading" class="section-title" style="margin-bottom:var(--space-lg);">SEND US A MESSAGE</h2>
+
+                    <form id="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="contact-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="contact-name" class="input-field" placeholder="Enter your full name" required>
+                            <span class="field-error">Please enter your name.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="contact-email" class="input-field" placeholder="you@example.com" required>
+                            <span class="field-error">Please enter a valid email address.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number</label>
+                            <input type="tel" id="contact-phone" class="input-field" placeholder="+91 XXXXX XXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Subject <span class="required">*</span></label>
+                            <select id="contact-subject" class="input-field" required>
+                                <option value="">Select a subject</option>
+                                <option value="admissions">Admissions Inquiry</option>
+                                <option value="academics">Academic Programs</option>
+                                <option value="scholarships">Scholarships &amp; Financial Aid</option>
+                                <option value="placements">Placements &amp; Careers</option>
+                                <option value="research">Research Opportunities</option>
+                                <option value="campus">Campus Visit</option>
+                                <option value="general">General Enquiry</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                            <span class="field-error">Please select a subject.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message <span class="required">*</span></label>
+                            <textarea id="contact-message" class="input-field" placeholder="Type your message here..." required></textarea>
+                            <span class="field-error">Please enter a message (at least 10 characters).</span>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Sidebar: Office Hours + Map + Social -->
+                <div>
+                    <!-- Office Hours -->
+                    <div class="animate-on-scroll" style="background-color:var(--white);border-radius:var(--border-radius);box-shadow:var(--shadow-sm);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                        <h3 style="font-size:1.1rem;margin-bottom:var(--space-md);color:var(--primary);">Office Hours</h3>
+                        <div class="office-hours-table">
+                            <div class="hours-row">
+                                <span class="hours-row__day">Monday</span>
+                                <span class="hours-row__time">9:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Tuesday</span>
+                                <span class="hours-row__time">9:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Wednesday</span>
+                                <span class="hours-row__time">9:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Thursday</span>
+                                <span class="hours-row__time">9:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Friday</span>
+                                <span class="hours-row__time">9:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Saturday</span>
+                                <span class="hours-row__time">9:00 AM – 1:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-row__day">Sunday</span>
+                                <span class="hours-row__time">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="animate-on-scroll delay-1" style="margin-bottom:var(--space-lg);">
+                        <div class="map-placeholder" aria-label="Map showing Junaid Bhaimia University location">
+                            &#128506; Google Map Embed — Campus Location
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="animate-on-scroll delay-2">
+                        <h3 style="font-size:1.1rem;margin-bottom:var(--space-md);color:var(--primary);">Follow JBU</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram" title="Instagram">&#128247;</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn">&#128188;</a>
+                            <a href="#" class="social-link" aria-label="YouTube" title="YouTube">&#9654;</a>
+                            <a href="#" class="social-link" aria-label="Twitter" title="Twitter">&#128038;</a>
+                            <a href="#" class="social-link" aria-label="Facebook" title="Facebook">&#128077;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CTA SECTION
+         ============================================= -->
+    <section class="section cta-section" aria-labelledby="cta-contact-heading">
+        <div class="container container--narrow">
+            <div class="deco-line deco-line--center" style="background-color:rgba(255,255,255,0.5);"></div>
+            <h2 id="cta-contact-heading" class="section-title animate-on-scroll">VISIT OUR CAMPUS</h2>
+            <p class="animate-on-scroll delay-1">There's no better way to experience JBU than in person. Schedule a campus tour and see our facilities, meet our faculty, and explore student life firsthand.</p>
+            <div class="cta-buttons animate-on-scroll delay-2">
+                <a href="tel:+911244001000" class="btn btn--gold btn--large">Call +91 124 400 1000</a>
+                <a href="mailto:info@jbuniversity.edu" class="btn btn--secondary btn--large">Email Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

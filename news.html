@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest news from Junaid Bhaimia University — Academic updates, research breakthroughs, campus stories, and achievements.">
+    <title>News — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Search Bar --- */
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto var(--space-xl);
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            outline: none;
+            transition: border-color var(--transition-fast);
+        }
+        .search-input:focus { border-color: var(--accent); }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        /* --- Filters --- */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+        }
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 2px solid var(--light-gray);
+            background-color: transparent;
+            color: var(--gray);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-fast);
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn--active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- Featured Story --- */
+        .featured-story {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .featured-story { grid-template-columns: 1.2fr 1fr; }
+        }
+        .featured-story__image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: linear-gradient(135deg, var(--primary), #1a2d4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .featured-story__content {
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .featured-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: var(--space-sm);
+            align-self: flex-start;
+        }
+        .featured-story__title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary);
+            margin-bottom: var(--space-sm);
+        }
+        .featured-story__excerpt {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+        .featured-story__meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* --- News Grid --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+        @media (min-width: 768px) {
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .news-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* --- Load More Button --- */
+        .load-more-container {
+            text-align: center;
+            margin-top: var(--space-xl);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link nav-link--active">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="news-title">
+        <div class="container">
+            <span class="section-label text-white">Stay Informed</span>
+            <h1 id="news-title" class="animate-on-scroll">NEWS &amp; UPDATES</h1>
+            <p class="animate-on-scroll delay-1">The latest stories, announcements, and milestones from the JBU community.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SEARCH BAR
+         ============================================= -->
+    <section class="section" style="padding-bottom:0;">
+        <div class="container container--narrow">
+            <div class="search-bar animate-on-scroll">
+                <span class="search-icon" aria-hidden="true">&#128269;</span>
+                <input type="search" class="search-input" id="news-search" placeholder="Search news articles..." aria-label="Search news articles">
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CATEGORY FILTERS
+         ============================================= -->
+    <section style="padding-top:var(--space-lg);padding-bottom:0;">
+        <div class="container">
+            <div class="filters animate-on-scroll" role="group" aria-label="Filter news by category">
+                <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+                <button class="filter-btn" data-filter="campus">Campus</button>
+                <button class="filter-btn" data-filter="achievement">Achievements</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FEATURED STORY
+         ============================================= -->
+    <section style="padding-top:var(--space-xl);">
+        <div class="container">
+            <article class="featured-story filterable-item animate-on-scroll" data-category="achievement">
+                <img src="https://picsum.photos/seed/jbu-news-featured/800/450" alt="National Science Innovation Award ceremony" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:var(--border-radius);box-shadow:var(--shadow-md);" loading="lazy">
+                <div class="featured-story__content">
+                    <span class="featured-label">Featured Story</span>
+                    <h2 class="featured-story__title">JBU Researchers Win National Science Innovation Award for Sustainable Energy Breakthrough</h2>
+                    <p class="featured-story__excerpt">
+                        A multidisciplinary team of JBU researchers has been awarded the prestigious National Science Innovation Award for developing a cost-effective solar panel coating that increases energy efficiency by 40%. The breakthrough was achieved through collaboration between the Center for Sustainable Energy and the Materials Science Laboratory.
+                    </p>
+                    <div class="featured-story__meta">
+                        <span>Sept 5, 2026</span> &bull; <span>Achievement</span> &bull; <span>5 min read</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- =============================================
+         NEWS GRID
+         ============================================= -->
+    <section style="padding-top:var(--space-xl);padding-bottom:var(--space-2xl);">
+        <div class="container">
+            <div class="news-grid">
+
+                <!-- News 1 -->
+                <article class="card filterable-item animate-on-scroll" data-category="academic">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#2c1e3d,#1a1025);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Academic</span>
+                        <h3 class="card__title">New Doctoral Program in Artificial Intelligence Announced</h3>
+                        <p class="card__text">JBU launches its first PhD program focused on advancing AI research and ethical applications in healthcare and autonomous systems.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Aug 28, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 2 -->
+                <article class="card filterable-item animate-on-scroll delay-1" data-category="campus">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#1e2c25,#0f1a15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Campus</span>
+                        <h3 class="card__title">State-of-the-Art Innovation Hub Opens Its Doors</h3>
+                        <p class="card__text">The new JBU Innovation Center features maker spaces, collaboration zones, prototyping labs, and a dedicated startup incubation wing.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Aug 15, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 3 -->
+                <article class="card filterable-item animate-on-scroll delay-2" data-category="research">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#2c2a1e,#1a1910);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Research</span>
+                        <h3 class="card__title">Biomedical Team Publishes Landmark Study in Nature Medicine</h3>
+                        <p class="card__text">Research from the Center for Biomedical Health Research reveals a novel approach to targeted drug delivery using nanotechnology.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Aug 2, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 4 -->
+                <article class="card filterable-item animate-on-scroll" data-category="achievement">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#0b1220,#1a2d4a);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Achievement</span>
+                        <h3 class="card__title">JBU Debuts in Top 100 Global University Rankings</h3>
+                        <p class="card__text">For the first time, JBU has entered the global top 100 rankings, recognized for research output, graduate employability, and international collaboration.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Jul 20, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 5 -->
+                <article class="card filterable-item animate-on-scroll delay-1" data-category="campus">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#2c1e1e,#1a1010);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Campus</span>
+                        <h3 class="card__title">Annual Cultural Festival Vastu Draws Record Attendance</h3>
+                        <p class="card__text">Over 5,000 participants attended this year's Vastu festival, featuring music concerts, art exhibitions, dance performances, and cultural competitions.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Jul 8, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 6 -->
+                <article class="card filterable-item animate-on-scroll delay-2" data-category="academic">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#1e2c25,#0f1a15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Academic</span>
+                        <h3 class="card__title">New Partnership with MIT Launches Joint Exchange Program</h3>
+                        <p class="card__text">Students can now spend a semester at MIT through a newly signed academic exchange agreement, opening doors for cross-cultural learning.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Jun 25, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 7 -->
+                <article class="card filterable-item animate-on-scroll" data-category="research">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#2c1e3d,#1a1025);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Research</span>
+                        <h3 class="card__title">Quantum Computing Initiative Secures $2M Research Grant</h3>
+                        <p class="card__text">The JBU Quantum Computing Lab has been awarded a major federal grant to develop quantum algorithms for cryptographic security applications.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Jun 12, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 8 -->
+                <article class="card filterable-item animate-on-scroll delay-1" data-category="campus">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#0b1220,#1a2d4a);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Campus</span>
+                        <h3 class="card__title">JBU Sports Team Wins National Inter-University Championship</h3>
+                        <p class="card__text">The JBU basketball team claimed their first national title, defeating defending champions in a thrilling overtime final.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>Jun 1, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 9 -->
+                <article class="card filterable-item animate-on-scroll delay-2" data-category="achievement">
+                    <div style="width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#2c2a1e,#1a1910);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;" aria-hidden="true">Article Image</div>
+                    <div class="card__content">
+                        <span class="card__category">Achievement</span>
+                        <h3 class="card__title">Three JBU Faculty Elected to National Academy of Sciences</h3>
+                        <p class="card__text">Recognition for outstanding contributions in artificial intelligence, environmental science, and biomedical engineering.</p>
+                    </div>
+                    <div class="card__footer">
+                        <span>May 18, 2026</span>
+                        <a href="#" class="btn btn--outline btn--small">Read More &rarr;</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="load-more-container">
+                <button class="btn btn--outline" id="load-more-news">Load More Articles</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

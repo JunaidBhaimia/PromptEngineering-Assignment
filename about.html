@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Junaid Bhaimia University — Our history, vision, mission, core values, and milestones of excellence.">
+    <title>About — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <!-- About page specific styles -->
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+
+        .page-banner h1 {
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-banner p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: var(--space-sm) auto 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Section spacing adjustments --- */
+        .content-section {
+            padding: var(--space-2xl) 0;
+        }
+
+        /* --- Core Values --- */
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .values-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .value-card {
+            padding: var(--space-lg);
+            border-left: 4px solid var(--gold);
+            background-color: var(--cream);
+            transition: all var(--transition-base);
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--accent);
+        }
+
+        .value-card__number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: var(--font-heading);
+            margin-bottom: var(--space-xs);
+        }
+
+        .value-card__title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+            color: var(--primary);
+        }
+
+        .value-card__text {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* --- Vision / Mission --- */
+        .vision-mission {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+        }
+
+        @media (min-width: 768px) {
+            .vision-mission {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .vm-card {
+            padding: var(--space-xl);
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card--vision {
+            background: linear-gradient(135deg, var(--primary), #1a2d4a);
+            color: var(--white);
+        }
+
+        .vm-card--mission {
+            background: linear-gradient(135deg, var(--accent), #7d1729);
+            color: var(--white);
+        }
+
+        .vm-card h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .vm-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .vm-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- Timeline --- */
+        .timeline {
+            position: relative;
+            padding: var(--space-xl) 0;
+        }
+
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--light-gray);
+        }
+
+        @media (min-width: 768px) {
+            .timeline::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            padding-bottom: var(--space-xl);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 50%;
+            }
+
+            .timeline-item:nth-child(odd) {
+                padding-right: var(--space-xl);
+                text-align: right;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 50%;
+                padding-left: var(--space-xl);
+            }
+        }
+
+        /* Timeline dot */
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(odd) .timeline-dot {
+                right: -12px;
+                left: auto;
+            }
+
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: -12px;
+            }
+        }
+
+        .timeline-year {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: var(--space-xs);
+            background-color: rgba(155, 28, 49, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2px;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION (Same as index.html)
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link nav-link--active">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="about-title">
+        <div class="container">
+            <span class="section-label text-white">Who We Are</span>
+            <h1 id="about-title" class="animate-on-scroll">ABOUT JBU</h1>
+            <p class="animate-on-scroll delay-1">A legacy of academic excellence, innovation, and shaping the leaders of tomorrow.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         UNIVERSITY HISTORY
+         ============================================= -->
+    <section class="content-section" aria-labelledby="history-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Our Beginning</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="history-heading" class="section-title">THE STORY OF JUNAI BHAIMIA UNIVERSITY</h2>
+            </div>
+
+            <div class="editorial-grid">
+                <div class="animate-on-scroll">
+                    <p>
+                        Founded in 2001, Junaid Bhaimia University began as a small private institution with just three departments and a bold vision: to redefine higher education through innovation, inclusivity, and purpose-driven learning.
+                    </p>
+                    <p>
+                        Over two decades, JBU has grown from a humble campus of 200 students into one of the region's most respected universities — home to 15,000+ students, 120+ programs across six faculties, and a global network of alumni working in every corner of the world.
+                    </p>
+                    <p>
+                        What started as a dream to make quality education accessible has become a movement that continues to inspire thousands each year. Today, JBU stands as a symbol of what happens when passion meets perseverance.
+                    </p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" alt="Junaid Bhaimia University campus heritage" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--border-radius);box-shadow:var(--shadow-lg);" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         VISION & MISSION
+         ============================================= -->
+    <section class="section section--alt" aria-labelledby="vm-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Purpose & Direction</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="vm-heading" class="section-title">OUR VISION AND MISSION</h2>
+            </div>
+
+            <div class="vision-mission">
+                <!-- Vision Card -->
+                <div class="vm-card vm-card--vision animate-on-scroll">
+                    <h3>Vision</h3>
+                    <p>
+                        To cultivate knowledge, innovation, and responsible leadership for a changing world. We envision a university where every mind is empowered to discover, create, and lead — building a future where education transforms lives and communities on a global scale.
+                    </p>
+                </div>
+
+                <!-- Mission Card -->
+                <div class="vm-card vm-card--mission animate-on-scroll delay-1">
+                    <h3>Mission</h3>
+                    <p>
+                        To provide transformative education through rigorous academics, groundbreaking research, and meaningful community engagement. We are committed to fostering intellectual curiosity, ethical responsibility, and a lifelong passion for learning in every member of our university community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CORE VALUES
+         ============================================= -->
+    <section class="content-section" aria-labelledby="values-heading">
+        <div class="container">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">What We Stand For</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="values-heading" class="section-title">CORE VALUES</h2>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card animate-on-scroll">
+                    <div class="value-card__number">01</div>
+                    <h3 class="value-card__title">Excellence</h3>
+                    <p class="value-card__text">We hold ourselves to the highest standards in everything we do — from teaching and research to service and community impact.</p>
+                </div>
+                <div class="value-card animate-on-scroll delay-1">
+                    <div class="value-card__number">02</div>
+                    <h3 class="value-card__title">Integrity</h3>
+                    <p class="value-card__text">Honesty, transparency, and accountability guide every decision we make and every relationship we build.</p>
+                </div>
+                <div class="value-card animate-on-scroll delay-2">
+                    <div class="value-card__number">03</div>
+                    <h3 class="value-card__title">Innovation</h3>
+                    <p class="value-card__text">We encourage creativity, embrace new ideas, and challenge conventions to find better ways forward.</p>
+                </div>
+                <div class="value-card animate-on-scroll delay-3">
+                    <div class="value-card__number">04</div>
+                    <h3 class="value-card__title">Inclusion</h3>
+                    <p class="value-card__text">Every voice matters. We build a campus where diversity is celebrated and everyone belongs.</p>
+                </div>
+                <div class="value-card animate-on-scroll delay-4">
+                    <div class="value-card__number">05</div>
+                    <h3 class="value-card__title">Leadership</h3>
+                    <p class="value-card__text">We develop leaders who are not only skilled, but compassionate, ethical, and driven to serve.</p>
+                </div>
+                <div class="value-card animate-on-scroll delay-5">
+                    <div class="value-card__number">06</div>
+                    <h3 class="value-card__title">Responsibility</h3>
+                    <p class="value-card__text">We take ownership of our impact on society, the environment, and future generations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         MILESTONES TIMELINE
+         ============================================= -->
+    <section class="content-section section--alt" aria-labelledby="milestones-heading">
+        <div class="container container--narrow">
+            <div class="text-center mb-lg animate-on-scroll">
+                <span class="section-label">Our Journey</span>
+                <div class="deco-line deco-line--center"></div>
+                <h2 id="milestones-heading" class="section-title">KEY MILESTONES</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Milestone 1 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2001</span>
+                    <h3 class="timeline-title">University Founded</h3>
+                    <p class="timeline-text">Junaid Bhaimia University was established with three founding departments and a commitment to transformative education.</p>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2005</span>
+                    <h3 class="timeline-title">Campus Expansion</h3>
+                    <p class="timeline-text">The main campus was expanded to accommodate growing enrollment, adding new academic buildings and student facilities.</p>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2008</span>
+                    <h3 class="timeline-title">First Research Center</h3>
+                    <p class="timeline-text">JBU launched its first dedicated research center, marking a new era in scholarly investigation and discovery.</p>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2014</span>
+                    <h3 class="timeline-title">International Partnerships</h3>
+                    <p class="timeline-text">Strategic academic partnerships were formed with universities across four continents, opening exchange and collaboration opportunities.</p>
+                </div>
+
+                <!-- Milestone 5 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2020</span>
+                    <h3 class="timeline-title">Innovation &amp; Entrepreneurship Hub</h3>
+                    <p class="timeline-text">The JBU Innovation Hub opened, providing startups, maker spaces, and incubation support for student entrepreneurs.</p>
+                </div>
+
+                <!-- Milestone 6 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2023</span>
+                    <h3 class="timeline-title">Global Recognition</h3>
+                    <p class="timeline-text">JBU entered international rankings for the first time, recognized for research output and graduate employability.</p>
+                </div>
+
+                <!-- Milestone 7 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2026</span>
+                    <h3 class="timeline-title">25 Years of Excellence</h3>
+                    <p class="timeline-text">Celebrating a quarter century of impact — 15,000+ students, 120+ programs, and a community spanning every continent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Photo gallery at Junaid Bhaimia University — Campus life, academics, events, sports, and cultural activities.">
+    <title>Gallery — Junaid Bhaimia University</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1220'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='16' font-weight='bold' fill='%23c9a227'>JBU</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* --- Page Banner --- */
+        .page-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            position: relative;
+        }
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 162, 39, 0.1), transparent 70%);
+        }
+        .page-banner h1 { color: var(--white); position: relative; z-index: 1; }
+        .page-banner p { color: rgba(255,255,255,0.7); max-width:600px; margin:var(--space-sm) auto 0; position:relative; z-index:1; }
+
+        /* --- Filters --- */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-xl);
+        }
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 2px solid var(--light-gray);
+            background-color: transparent;
+            color: var(--gray);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-fast);
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn--active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        /* --- Gallery Grid --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+        @media (min-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+        }
+        .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-md); }
+        .gallery-item__img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item__overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-md);
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: var(--white);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+        .gallery-item:hover .gallery-item__overlay { opacity: 1; }
+        .gallery-item__caption {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .gallery-item__category {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* Placeholder styles for gallery images */
+        .gallery-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .gp--campus-1 { background: linear-gradient(135deg, #1a2d4a, #0b1220); }
+        .gp--campus-2 { background: linear-gradient(135deg, #2c2a1e, #1a1910); }
+        .gp--academics-1 { background: linear-gradient(135deg, #2c1e3d, #1a1025); }
+        .gp--academics-2 { background: linear-gradient(135deg, #1e2c25, #0f1a15); }
+        .gp--events-1 { background: linear-gradient(135deg, #2c1e1e, #1a1010); }
+        .gp--events-2 { background: linear-gradient(135deg, #1a2d4a, #0b1220); }
+        .gp--sports-1 { background: linear-gradient(135deg, #2c2a1e, #1a1910); }
+        .gp--sports-2 { background: linear-gradient(135deg, #1e2c25, #0f1a15); }
+        .gp--cultural-1 { background: linear-gradient(135deg, #2c1e3d, #1a1025); }
+        .gp--cultural-2 { background: linear-gradient(135deg, #2c1e1e, #1a1010); }
+
+        /* --- Lightbox --- */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox--open { display: flex !important; }
+        .lightbox-image {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+        }
+        .lightbox-placeholder-large {
+            width: 80vw;
+            max-width: 900px;
+            height: 60vh;
+            max-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: var(--border-radius);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+        }
+        .lightbox-close:hover { background-color: rgba(255,255,255,0.2); }
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background-color: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-fast);
+        }
+        .lightbox-prev:hover,
+        .lightbox-next:hover { background-color: rgba(255,255,255,0.2); }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         NAVIGATION
+         ============================================= -->
+    <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Junaid Bhaimia University Home">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect width="40" height="40" rx="4" fill="#0b1220"/>
+                    <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                </svg>
+                <span class="nav-logo-text">JUNAID BHAIMIA UNIVERSITY</span>
+            </a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="academics.html" class="nav-link">Academics</a></li>
+                <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+                <li><a href="research.html" class="nav-link">Research</a></li>
+                <li><a href="placements.html" class="nav-link">Placements</a></li>
+                <li><a href="governance.html" class="nav-link">Governance</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li><a href="gallery.html" class="nav-link nav-link--active">Gallery</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="admissions.html" class="btn btn--primary">Apply Now</a></li>
+            </ul>
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- =============================================
+         PAGE BANNER
+         ============================================= -->
+    <section class="page-banner" aria-labelledby="gallery-title">
+        <div class="container">
+            <span class="section-label text-white">Visual Stories</span>
+            <h1 id="gallery-title" class="animate-on-scroll">GALLERY</h1>
+            <p class="animate-on-scroll delay-1">Explore campus life, academic milestones, cultural celebrations, and sporting achievements through our photo gallery.</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         CATEGORY FILTERS
+         ============================================= -->
+    <section style="padding-top:var(--space-xl);">
+        <div class="container container--narrow">
+            <div class="filters animate-on-scroll" role="group" aria-label="Filter gallery by category">
+                <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="campus">Campus</button>
+                <button class="filter-btn" data-filter="academics">Academics</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         GALLERY GRID
+         ============================================= -->
+    <section style="padding-top:var(--space-xl);padding-bottom:var(--space-2xl);">
+        <div class="container">
+            <div class="gallery-grid">
+
+                <!-- Gallery Item 1 - Campus -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="campus" role="button" tabindex="0" aria-label="View Main Campus Aerial View">
+                    <div class="gallery-placeholder gp--campus-1">Campus Aerial</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Campus</span>
+                        <span class="gallery-item__caption">Main Campus — Aerial View</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 - Campus -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="campus" role="button" tabindex="0" aria-label="View Library Interior">
+                    <div class="gallery-placeholder gp--campus-2">Library</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Campus</span>
+                        <span class="gallery-item__caption">Central Library — Modern Interior</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 - Academics -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="academics" role="button" tabindex="0" aria-label="View Science Laboratory">
+                    <div class="gallery-placeholder gp--academics-1">Science Lab</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Academics</span>
+                        <span class="gallery-item__caption">Advanced Science Laboratory</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 - Events -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="events" role="button" tabindex="0" aria-label="View Graduation Ceremony">
+                    <div class="gallery-placeholder gp--events-1">Graduation</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Events</span>
+                        <span class="gallery-item__caption">Convocation Ceremony 2025</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 - Sports -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="sports" role="button" tabindex="0" aria-label="View Sports Complex">
+                    <div class="gallery-placeholder gp--sports-1">Sports Complex</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Sports</span>
+                        <span class="gallery-item__caption">JBU Sports Complex</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 - Cultural -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="cultural" role="button" tabindex="0" aria-label="View Cultural Festival">
+                    <div class="gallery-placeholder gp--cultural-1">Festival</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Cultural</span>
+                        <span class="gallery-item__caption">Vastu Cultural Festival Stage</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 - Campus -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="campus" role="button" tabindex="0" aria-label="View Student Center">
+                    <div class="gallery-placeholder gp--campus-1">Student Center</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Campus</span>
+                        <span class="gallery-item__caption">Student Activity Center</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 - Academics -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="academics" role="button" tabindex="0" aria-label="View Computer Lab">
+                    <div class="gallery-placeholder gp--academics-2">Computer Lab</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Academics</span>
+                        <span class="gallery-item__caption">Computer Science Lab</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 9 - Events -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="events" role="button" tabindex="0" aria-label="View Research Conference">
+                    <div class="gallery-placeholder gp--events-2">Conference</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Events</span>
+                        <span class="gallery-item__caption">International Research Conference</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 10 - Sports -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="sports" role="button" tabindex="0" aria-label="View Basketball Team">
+                    <div class="gallery-placeholder gp--sports-2">Basketball</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Sports</span>
+                        <span class="gallery-item__caption">Varsity Basketball Team</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 11 - Cultural -->
+                <div class="gallery-item filterable-item animate-on-scroll" data-category="cultural" role="button" tabindex="0" aria-label="View Art Exhibition">
+                    <div class="gallery-placeholder gp--cultural-2">Art Exhibition</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Cultural</span>
+                        <span class="gallery-item__caption">Annual Art Exhibition</span>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 12 - Campus -->
+                <div class="gallery-item filterable-item animate-on-scroll delay-1" data-category="campus" role="button" tabindex="0" aria-label="View Innovation Hub">
+                    <div class="gallery-placeholder gp--campus-2">Innovation Hub</div>
+                    <div class="gallery-item__overlay">
+                        <span class="gallery-item__category">Campus</span>
+                        <span class="gallery-item__caption">JBU Innovation Hub Entrance</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         LIGHTBOX VIEWER
+         ============================================= -->
+    <div id="gallery-lightbox" class="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox-prev" aria-label="Previous image">&#8592;</button>
+        <button class="lightbox-next" aria-label="Next image">&#8594;</button>
+        <div class="lightbox-placeholder-large" style="background:linear-gradient(135deg,#1a2d4a,#0b1220);" aria-hidden="true">
+            Gallery Image Preview
+        </div>
+        <span class="lightbox-counter" aria-live="polite">1 / 12</span>
+    </div>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer bg-primary" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid" style="display:grid;grid-template-columns:1fr;gap:var(--space-xl);padding:var(--space-2xl) 0;">
+                <div>
+                    <a href="index.html" class="footer-logo" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+                        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="40" height="40" rx="4" fill="#1a2d4a"/>
+                            <rect x="1" y="1" width="38" height="38" rx="3" stroke="#c9a227" stroke-width="1"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#c9a227">JBU</text>
+                        </svg>
+                        <div>
+                            <div style="color:#fff;font-size:1rem;font-weight:700;">JUNAID BHAIMIA UNIVERSITY</div>
+                            <div style="color:var(--gold);font-size:0.8rem;letter-spacing:1px;">LEARN. LEAD. CREATE.</div>
+                        </div>
+                    </a>
+                    <p style="color:rgba(255,255,255,0.6);max-width:300px;font-size:0.9rem;">Cultivating knowledge, innovation, and responsible leadership for a changing world since 2001.</p>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">University</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="about.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">About</a></li>
+                        <li><a href="governance.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Leadership &amp; Governance</a></li>
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Academics</a></li>
+                        <li><a href="research.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Admissions</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="academics.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Programs</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Apply Now</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Scholarships</a></li>
+                        <li><a href="admissions.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Fees</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Campus</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="news.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">News</a></li>
+                        <li><a href="events.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Events</a></li>
+                        <li><a href="gallery.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Gallery</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Campus Life</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:#fff;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:var(--space-md);">Connect</h4>
+                    <ul style="display:grid;gap:var(--space-sm);">
+                        <li><a href="contact.html" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Contact Us</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">Instagram</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">LinkedIn</a></li>
+                        <li><a href="#" style="color:rgba(255,255,255,0.6);font-size:0.9rem;">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding:var(--space-md) 0;text-align:center;">
+                <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin:0;">&copy; 2026 Junaid Bhaimia University. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
