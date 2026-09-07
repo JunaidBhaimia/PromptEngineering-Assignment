@@ -1,0 +1,466 @@
+/* =============================================
+   JUNAI BHAIMIA UNIVERSITY — PAGE-SPECIFIC STYLES
+   These are overrides/additions per-page.
+   Most global styling lives in style.css & responsive.css.
+   ============================================= */
+
+/* --- HOME PAGE EXTRA STYLES --- */
+
+/* Hero section dark overlay gradient */
+.hero {
+    background-color: var(--primary);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background photo behind the overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://picsum.photos/seed/jbu-hero/1920/1080') center/cover no-repeat;
+    z-index: 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(11, 18, 32, 0.75) 0%, rgba(11, 18, 32, 0.5) 40%, rgba(11, 18, 32, 0.85) 100%);
+    z-index: 1;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.hero__title {
+    color: var(--white);
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+}
+
+.hero__tagline {
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+}
+
+.hero__description {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin-bottom: var(--space-lg);
+}
+
+.hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-xl);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero__meta-item {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.hero__scroll-indicator {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse-bounce 2s infinite;
+}
+
+@keyframes pulse-bounce {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
+}
+
+/* Stats grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--space-lg);
+}
+
+.stat-number {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+/* Programs grid */
+.programs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .programs-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Program card placeholder image area */
+.program-card__visual {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--primary) 0%, #1a2d4a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 3rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+}
+
+.program-card__visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(201, 162, 39, 0.1) 50%, transparent 60%);
+}
+
+/* News preview grid */
+.news-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .news-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .news-preview-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Event cards row */
+.events-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .events-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .events-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.event-card {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.event-card__date-block {
+    flex-shrink: 0;
+    width: 70px;
+    text-align: center;
+    padding-right: var(--space-md);
+    border-right: 2px solid var(--light-gray);
+}
+
+.event-card__date-day {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.event-card__date-month {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+}
+
+.event-card__title {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-xs);
+}
+
+.event-card__venue {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Campus section */
+.campus-section {
+    position: relative;
+}
+
+.campus-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .campus-images {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 250px);
+    }
+
+    .campus-images__item:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+}
+
+.campus-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.campus-image-placeholder--1 {
+    background: linear-gradient(135deg, #1a2d4a, #0b1220);
+}
+
+.campus-image-placeholder--2 {
+    background: linear-gradient(135deg, #2c1e3d, #1a1025);
+}
+
+.campus-image-placeholder--3 {
+    background: linear-gradient(135deg, #1e2c25, #0f1a15);
+}
+
+.campus-image-placeholder--4 {
+    background: linear-gradient(135deg, #2c2a1e, #1a1910);
+}
+
+.campus-image-placeholder--5 {
+    background: linear-gradient(135deg, #2c1e1e, #1a1010);
+}
+
+/* Testimonial slider */
+.testimonials-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial-slider__viewport {
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonial-slider__track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.testimonial-slider__slide {
+    min-width: 100%;
+    padding: var(--space-xl) 0;
+}
+
+.testimonial-quote {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.testimonial-quote::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--gold);
+    position: absolute;
+    top: -2.5rem;
+    left: -1rem;
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.testimonial-role {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+}
+
+.testimonial-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.testimonial-dot.active {
+    background-color: var(--accent);
+}
+
+/* CTA section */
+.cta-section {
+    background: linear-gradient(135deg, var(--accent) 0%, #7d1729 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    color: var(--white);
+}
+
+.cta-section p {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-lg);
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+/* Research section */
+.research-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .research-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.research-stat {
+    text-align: center;
+    padding: var(--space-md);
+    border-left: 3px solid var(--gold);
+    background-color: rgba(201, 162, 39, 0.05);
+}
+
+/* Back-to-top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background-color: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-base);
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: #7d1729;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,125 @@
+/* =============================================
+   JUNAI BHAIMIA UNIVERSITY — RESPONSIVE STYLES
+   ============================================= */
+
+/* --- Default mobile-first base is in style.css --- */
+/* Adjustments below target specific breakpoints upward */
+
+/* ====================================================
+   BREAKPOINT: 480px (Small phones)
+   ==================================================== */
+@media (min-width: 480px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+
+/* ====================================================
+   BREAKPOINT: 768px (Tablets & up)
+   ==================================================== */
+@media (min-width: 768px) {
+    :root {
+        --nav-height: 90px;
+    }
+
+    .container {
+        padding: 0 var(--space-xl);
+    }
+
+    /* Two-column grid base */
+    .grid--2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+    }
+
+    /* Hero content width */
+    .hero__text {
+        max-width: 700px;
+    }
+
+    /* Testimonial slider viewport */
+    .testimonial-slider__viewport {
+        overflow: hidden;
+    }
+
+    .testimonial-slider__track {
+        display: flex;
+        transition: transform var(--transition-slow);
+    }
+
+    .testimonial-slider__slide {
+        min-width: 100%;
+        padding: 0 var(--space-md);
+    }
+
+    /* Event card date block */
+    .event-card__date {
+        width: 100px;
+    }
+}
+
+/* ====================================================
+   BREAKPOINT: 992px (Laptop & up)
+   ==================================================== */
+@media (min-width: 992px) {
+    :root {
+        --nav-height: 95px;
+    }
+
+    .container {
+        padding: 0 3rem;
+    }
+
+    /* Three-column grids */
+    .grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+
+    .grid--4 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-lg);
+    }
+
+    /* Editorial two-column layout */
+    .editorial-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        align-items: center;
+    }
+
+    /* Stats grid wider */
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Card grids for programs/news/events */
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+/* ====================================================
+   BREAKPOINT: 1200px (Desktop)
+   ==================================================== */
+@media (min-width: 1200px) {
+    .container {
+        padding: 0 4rem;
+    }
+
+    .hero__title {
+        font-size: clamp(3rem, 6vw, 5.5rem);
+    }
+}
+
+/* ====================================================
+   BREAKPOINT: 1440px (Large desktop)
+   ==================================================== */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1320px;
+        padding: 0 5rem;
+    }
+}
